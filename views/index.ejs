@@ -15,7 +15,7 @@
 
         window.compile = function() {
             var htmlcode = window.Blockly.JavaScript.workspaceToCode();
-            
+
             show_code(htmlcode);
 
             var code = htmlcode.replace(/<br>/g, "\n");
@@ -23,7 +23,11 @@
         }
 
         function show_code(code) {
-            document.getElementById("codeDiv").innerHTML = code;
+            var delayInMilliseconds = 1000; //1 second
+            setTimeout(function() {
+                document.getElementById("codeDiv").innerHTML = code;
+            }, delayInMilliseconds);
+
         }
 
         function compile_code(code) {
@@ -36,18 +40,15 @@
             })
             console.log(body);
             request.send(body);
-            var delayInMilliseconds = 1000; //2 second
+            var delayInMilliseconds = 1000; //1 second
             setTimeout(function() {
                 document.getElementById('outputDiv').contentWindow.location.reload();
+                document.getElementById('quadruplesDiv').contentWindow.location.reload();
+                document.getElementById('tablesDiv').contentWindow.location.reload();
             }, delayInMilliseconds);
         }
 
-        function show_results() {
-            
-            //
-            document.getElementById("quadruplesDiv").innerHTML = "WOOW";
-            document.getElementById("tablesDiv").innerHTML = "WOOW";
-        }
+        function show_results() {}
     </script>
 </head>
 
@@ -86,20 +87,16 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                
+
                 <div class="content border border-dark px-2" id="codeDiv">
                     Your code will appear here
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="content border border-dark px-2" id="quadruplesDiv">
-                    Your quadruples will appear here
-                </div>
+                <iframe class="content border border-dark px-2" id="quadruplesDiv" src="quadruples.html">Your quadruples will appear here</iframe>
             </div>
             <div class="col-md-4">
-                <div class="content border border-dark px-2" id="tablesDiv">
-                    Your symbols and constants tables will appear here
-                </div>
+                <iframe class="content border border-dark px-2" id="tablesDiv" src="tables.html">Your tables will appear here</iframe>
             </div>
         </div>
     </div>

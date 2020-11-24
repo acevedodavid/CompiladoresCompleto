@@ -45,6 +45,14 @@ app.get('/result.html', (req, res) => {
     res.render('result');
 });
 
+app.get('/quadruples.html', (req, res) => {
+    res.render('quadruples');
+});
+
+app.get('/tables.html', (req, res) => {
+    res.render('tables');
+});
+
 app.get('/retrieveResults', (req,res) => {
     console.log("/retrieveResults");
     var result = "";
@@ -59,7 +67,24 @@ app.get('/retrieveResults', (req,res) => {
     });
 });
 
+app.get('/retrieveQuadsAndTables', (req,res) => {
+    console.log("/retrieveQuadsAndTables");
+    var result = "";
+    fs.readFile('output_main.txt', 'utf8', (err,data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        result = data;
+        console.log(result);
+        res.end(result);
+    });
+});
+
+
+
 app.post('/compileCode', (req, res) => {
+    writeFile("output_vm.txt", "");
     console.log(req.body.code);
     saveCode(runMain, req.body.code);
     //res.end();
