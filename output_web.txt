@@ -1,0 +1,5 @@
+program default;
+main()
+{
+  write(3);
+}
