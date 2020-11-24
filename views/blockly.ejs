@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="../blockly/blockly_uncompressed.js"></script>
+    <script src="../blockly/generators/javascript.js"></script>
+    <script src="../blockly/msg/js/en.js"></script>
+    <script src=""></script>
+    <script src="../js/Falke.js"></script>
+    <script src=""></script>
+    <script src="../js/blocks.js"></script>
+    <script src=""></script>
+    <style>
+        html,
+        body {
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .blocklySvg {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function init() {
+            Blockly.inject(document.body, {
+                toolbox: document.getElementById('toolbox')
+            });
+            // Let the top-level application know that Blockly is ready.
+            window.parent.blockly_loaded(Blockly);
+            
+            /*
+            var rootBlock = workspace.newBlock('program_name');
+            rootBlock.initSvg();
+            rootBlock.render();
+            rootBlock.setMovable(false);
+            rootBlock.setDeletable(false);
+            */
+
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <xml id="toolbox" style="display: none">
+        <category name="Program" colour="230">
+            <block type="program_name"></block>
+        </category>
+        <category name="Variables" colour="330">
+            <block type="vars"></block>
+            <block type="var_declaration"></block>
+            <block type="var_call"></block>
+            <block type="assign"></block>
+            <block type="expression"></block>
+        </category>
+        <category name="Functions" colour="20">
+            <block type="function"></block>
+            <block type="main"></block>
+            <block type="return"></block>
+            <block type="functioncall"></block>
+            <block type="functioncall_void"></block>
+        </category>
+        <category name="Sequential" colour="120">
+            <block type="write"></block>
+            <block type="read"></block>
+        </category>
+        <category name="Conditional" colour="210">
+            <block type="if"></block>
+            <block type="if_else"></block>
+            <block type="for"></block>
+            <block type="while"></block>
+        </category>
+        <category name="Math" colour="260">
+            <block type="arithmetic"></block>
+            <block type="comparison"></block>
+            <block type="logical_operators"></block>
+        </category>
+    </xml>
+</body>
+
+</html>

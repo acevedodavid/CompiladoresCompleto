@@ -1,0 +1,23 @@
+{
+  "name": "proyectofinal",
+  "version": "1.0.0",
+  "description": "Proyecto Final - Compiladores - Nov 2020",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acevedodavid/CompiladoresCompleto.git"
+  },
+  "author": "David Acevedo. Rodrigo Urbina.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acevedodavid/CompiladoresCompleto/issues"
+  },
+  "homepage": "https://github.com/acevedodavid/CompiladoresCompleto#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  }
+}
