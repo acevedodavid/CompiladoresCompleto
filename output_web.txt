@@ -1,5 +1,15 @@
 program default;
 main()
+  var int : i;
+ {
+  i = 9;
+if (i < 10) then
 {
-  write(3);
+  write(i);
+write(20);
+}
+else
+{
+  write(100);
+}
 }

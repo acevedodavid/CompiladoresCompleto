@@ -15,12 +15,11 @@
 
         window.compile = function() {
             var htmlcode = window.Blockly.JavaScript.workspaceToCode();
+            
             show_code(htmlcode);
 
             var code = htmlcode.replace(/<br>/g, "\n");
             compile_code(code);
-
-            create_quadruples(code);
         }
 
         function show_code(code) {
@@ -30,14 +29,24 @@
         function compile_code(code) {
             var request = new XMLHttpRequest();
             request.open("POST", "/compileCode", true);
-            request.setRequestHeader('Content-Type','application/json');
+            request.setRequestHeader('Content-Type', 'application/json');
             console.log(code);
-            const body = JSON.stringify({code: code})
+            const body = JSON.stringify({
+                code: code
+            })
+            console.log(body);
             request.send(body);
+            var delayInMilliseconds = 1000; //2 second
+            setTimeout(function() {
+                document.getElementById('outputDiv').contentWindow.location.reload();
+            }, delayInMilliseconds);
         }
 
-        function get_output() {
-
+        function show_results() {
+            
+            //
+            document.getElementById("quadruplesDiv").innerHTML = "WOOW";
+            document.getElementById("tablesDiv").innerHTML = "WOOW";
         }
     </script>
 </head>
@@ -72,13 +81,12 @@
                 <iframe class="content" id="blockly" src="blockly.html"></iframe>
             </div>
             <div class="col-md-6 ">
-                <div class="content border border-dark px-2" id="outputDiv">
-                    Your output will appear here
-                </div>
+                <iframe class="content border border-dark px-2" id="outputDiv" src="result.html">Your output will appear here</iframe>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
+                
                 <div class="content border border-dark px-2" id="codeDiv">
                     Your code will appear here
                 </div>
