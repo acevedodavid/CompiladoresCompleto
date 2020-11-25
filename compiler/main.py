@@ -89,12 +89,22 @@ float_counter = 0
 char_counter = 0
 bool_counter = 0
 
+
+#cte_address = nextCteAddress(cte_type)
+
+constants['data'][1] = {
+    'address': 0,
+    'type': 'int'
+}
+constants['count']['int'] += 1
+
 # These are saved through the whole execution, as there may be constants anywhere
-cte_int_counter = 0
+cte_int_counter = 1
 cte_float_counter = 0
 cte_char_counter = 0
 cte_bool_counter = 0
 
+loop_var = ''
 # Lexer
 
 # Declaration of tokens
@@ -393,8 +403,7 @@ def p_aux_llamada(p):
 
 
 def p_no_condicional(p):
-    '''no_condicional : FOR ID pn_push_operand_and_type dimensiones ASSIGN pn_push_operator expresion pn_assign TO expresion pn_for_push_comparison pn_comparison pn_for_go_false DO bloque pn_for_go_back
-                      | FOR ID pn_push_operand_and_type ASSIGN pn_push_operator expresion pn_assign TO expresion pn_for_push_comparison pn_comparison pn_for_go_false DO bloque pn_for_go_back'''
+    '''no_condicional : FOR ID pn_push_operand_and_type ASSIGN pn_push_operator expresion pn_assign TO expresion pn_for_push_comparison pn_comparison pn_for_go_false DO bloque pn_for_go_back'''
 
 
 def p_dimensiones(p):
@@ -458,6 +467,7 @@ def p_var_cte(p):
                | CTE_FLOAT pn_push_constant_and_type
                | CTE_CHAR pn_push_constant_and_type'''
     #print("termino var_cte")
+    #print(p[1])
 
 def p_error(p):
     #print(p)
@@ -783,6 +793,7 @@ def p_pn_assign(p):
                 # Hacer mas especifico este error
                 print("Error en asginacion")
                 sys.exit()
+    #print("sali")
 
 # lectura
 def p_pn_push_read_operator(p):
@@ -986,11 +997,28 @@ def p_pn_while_3(p):
 def p_pn_for_push_comparison(p):
     'pn_for_push_comparison : '
     #print("pn_for_push_comparison")
-    global stack_operands, stack_types, quadruples, stack_jumps, quadruples, current_func
-
-    stack_operands.append(symbols[current_function][current_var]['address'])
+    global stack_operands, stack_types, quadruples, stack_jumps, quadruples, loop_var
+    global current_function, current_var, current_type
+    #print("Aqui ando")
+    #print(current_function)
+    #print(current_var)
+    #print(current_type)
+    function_to_call = current_function
+    if (symbols[function_to_call]['vars'].get(current_var) is None):
+        function_to_call = 'global'
+        #print(function_to_call)
+    if (symbols[function_to_call]['vars'].get(current_var) is None):
+        print("Var not found")
+        sys.exit()
+    #print(function_to_call)
+    loop_var = symbols[function_to_call]['vars'][current_var]['address']
+    #print(loop_compare)
+    stack_operands.append(symbols[function_to_call]['vars'][current_var]['address'])
     stack_types.append(current_type)
-    stack_operators.append('==')
+    stack_operators.append('>')
+    #print(stack_operands)
+    #print(stack_types)
+    #print(stack_operators)
 
 def p_pn_for_go_false(p):
     'pn_for_go_false : '
@@ -1014,19 +1042,21 @@ def p_pn_for_go_false(p):
 def p_pn_for_go_back(p):
     'pn_for_go_back : '
     #print('pn_for_go_back')
-    global stack_jumps, quadruples
+    global stack_jumps, quadruples, current_var
 
     forOnFalse = stack_jumps.pop()
 
     forComparison = stack_jumps.pop()
+    #print(current_var)
     # To do
     # Cambiar para agregar constante que sea 1 y agregar el id de la variable del for
-    quad = ['+','id','1','id']
+    quad = ['+', loop_var,0,loop_var]
     quadruples.append(quad)
     quad = ['GOTO',None,None,forComparison]
     quadruples.append(quad)
 
     fill(forOnFalse,len(quadruples))
+    #print("sali")
 
 # Funciones
 def p_pn_add_function(p):
@@ -1264,5 +1294,5 @@ try:
        file.write(str(object_code))
 except:
     #counter = 0
-    #debug();
+    debug();
     print("No se pudo compilar el programa")

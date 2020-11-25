@@ -2,9 +2,6 @@ program testAritmetica;
 
 var int : i, j; float : myFloat;
 
-void module miFuncion()
-{}
-
 main()
 var int : suma, fromRead;
 {

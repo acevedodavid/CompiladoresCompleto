@@ -2,16 +2,11 @@ program testFunciones;
 
 var int : i,j; float : myFloat; char : myChar;
 
+
 void module uno(int a)
 var int : k;
 {
   write(a);
-}
-
-char module dos(char b)
-{
-  write(b);
-  return('a');
 }
 
 int module suma(int a, int b)
@@ -19,6 +14,12 @@ var int : result;
 {
   result = a + b;
   return(result);
+}
+
+char module dos(char b)
+{
+  write(b);
+  return('a');
 }
 
 main()

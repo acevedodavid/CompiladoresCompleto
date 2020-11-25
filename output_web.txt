@@ -1,26 +1,15 @@
-program testFunciones;
-var int : i, j;float : myFloat;char : myChar;
- void module uno(int a)
-  var int : k;
- {
-  write(a);
-}
-char module dos(char b)
-{
-  write(b);
-return('a');
-}
-int module suma(int a, int b)
-  var int : result;
- {
-  result = (a + b);
-return(result);
-}
+program default;
 main()
+  var int : i;
+ {
+  for i = 1 to 10 do
 {
-  i = 2;
-j = 1;
-uno(j);
-write(dos('b'));
-write(suma(i, j));
+  write(i);
+}
+i = 20;
+while(i < 30) do 
+{
+  write(i);
+i = (i + 1);
+}
 }
