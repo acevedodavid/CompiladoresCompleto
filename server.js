@@ -34,6 +34,24 @@ app.get('/favicon.ico', (req, res) => {
 });
 
 app.get('/', (req, res) => {
+    fs.writeFile("output_web.txt", "", function (err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("The file output_web.txt was cleared")
+    });
+    fs.writeFile("output_main.txt", "Your quadruples and tables will appear here", function (err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("The file output_main.txt was cleared")
+    });
+    fs.writeFile("output_vm.txt", "Your result will appear here", function (err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("The file output_vm.txt was cleared")
+    });
     res.render('index');
 });
 

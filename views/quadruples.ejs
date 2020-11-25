@@ -2,6 +2,11 @@
 <html>
 
 <head>
+    <style>
+        body {
+            font-family: "Courier New",sans-serif;
+        }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function init() {
@@ -10,10 +15,10 @@
             request.open("GET", '/retrieveQuadsAndTables', true);
             request.setRequestHeader('Content-Type', 'application/json');
             request.onload = function() {
-                
+
                 var res = request.response;
                 var quads = "";
-                
+
                 for (key in res['quadruples']) {
                     quads += key + "<br>";
                 }
