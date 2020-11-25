@@ -1,0 +1,17 @@
+program testChars;
+
+var int : i, j; char : letra;
+
+int module imprime(char b)
+{
+  write(b);
+  return('d');
+}
+
+main()
+{
+  i = 3;
+  letra = 'c';
+  letra = imprime(letra);
+  write(letra);
+}
