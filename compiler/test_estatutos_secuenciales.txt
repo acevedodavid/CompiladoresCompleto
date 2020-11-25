@@ -1,13 +1,9 @@
-program testAritmetica;
-
-var int : i, j; float : myFloat;
+program testSecuenciales;
 
 main()
-var int : suma, fromRead;
+var int : fromRead;
 {
   read(fromRead);
-  i = 20;
-  j = 10;
-  suma = i + j;
-  write(suma);
+  write(fromRead);
+  write(20 + 30);
 }

@@ -7,7 +7,6 @@ var int : i,j;
   j = 4;
   write(i);
   write(j,3);
-  read(i,j);
-  write(i);
+  write(i,'a');
   write(j);
 }

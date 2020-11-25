@@ -14,5 +14,5 @@ var int : k;
 {
   i = 2;
   j = i * 2 - 1;
-  uno(i,j);
+  uno(i,j,k);
 }

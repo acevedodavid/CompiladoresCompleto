@@ -28,7 +28,7 @@ ERA_function = ''
 # Revisa que el al momento de corre_programar se envio un objeto
 if len(sys.argv) != 2:
   print('ERROR, no se pudo detectar el archivo')
-  raise SyntaxError('Necesitas enviar un archivo .txto correcto')
+  raise SyntaxError('No es un archivo correcto')
 else:
   data = sys.argv[1]
   with open(data, 'r', newline='\n') as file:

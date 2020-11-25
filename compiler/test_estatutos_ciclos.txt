@@ -2,8 +2,6 @@ program testAritmetica;
 
 var int : i, j; float : myFloat;
 
-module void miFuncion()
-{}
 
 main()
 var int : suma, aquiSalgoFor, aquiSalgoWhile;
@@ -13,20 +11,10 @@ var int : suma, aquiSalgoFor, aquiSalgoWhile;
     write('a');
   }
 
-  write(aquiSalgoFor);
-
   suma = 0;
 
   while(suma < 10) do {
     suma = suma + 1;
-  }
-
-  write(aquiSalgoWhile);
-
-  if (suma > 10) then
-  {
     write(suma);
   }
-
-  miFuncion();
 }

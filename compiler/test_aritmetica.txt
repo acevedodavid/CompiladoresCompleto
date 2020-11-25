@@ -1,6 +1,6 @@
 program testAritmetica;
 
-var int : i, j; float : myFloat;
+var int : i, j;
 
 main()
 var int : suma, resta, mult, div, varios;
@@ -8,9 +8,13 @@ var int : suma, resta, mult, div, varios;
   i = 20;
   j = 10;
   suma = i + j;
+  write(suma);
   resta = i - j;
+  write(resta);
   mult = i * j;
+  write(mult);
   div = i / j;
+  write(div);
   varios = i + j * i;
-  write(i);
+  write(varios);
 }
