@@ -20,6 +20,7 @@ ip = []  # Sirve para regresar de la funcion
 current_function = []  # Sirve para saber la funcion actual
 param_list = {}  # Guardo los parametros de la funcion
 returnArray = []
+ERA_function = ''
 
 # To do
 # Checar que los tipos de datos se manejen bien (se guarden como fload, entero, etc...)
@@ -115,7 +116,7 @@ def run(quad, pointer):
   #print("\nrun")
   #print(quad)
 
-  global param_list, current_function, temp_endFunc
+  global param_list, current_function, temp_endFunc, ERA_function
 
   if quad[0] == 'GOTO':
     return quad[3]
@@ -131,13 +132,14 @@ def run(quad, pointer):
   # To Do
   # Checar que el siguiente paso sea pointer + 1
   if quad[0] == 'ERA':
-    initFunctionMemory(quad[3])
+    ERA_function = quad[3]
     return pointer + 1
 
   # To Do
   # Checar bien como se hace esta
   if quad[0] == 'gosub':
     ip.append(pointer + 1)
+    initFunctionMemory(ERA_function)
     #print(param_list)
     for key, val in param_list.items():
       #print(key)

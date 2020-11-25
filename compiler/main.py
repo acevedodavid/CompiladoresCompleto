@@ -264,10 +264,10 @@ def p_aux_funcion(p):
 
 
 def p_funcion(p):
-    '''funcion : tipo_retorno MODULE ID pn_add_function LPAREN parametros pn_param_count RPAREN vars pn_func_var_count bloque pn_end_function
-               | tipo_retorno MODULE ID pn_add_function LPAREN parametros pn_param_count RPAREN bloque pn_end_function
-               | tipo_retorno MODULE ID pn_add_function LPAREN RPAREN vars pn_func_var_count bloque pn_end_function
-               | tipo_retorno MODULE ID pn_add_function LPAREN RPAREN bloque pn_end_function'''
+    '''funcion : MODULE tipo_retorno ID pn_add_function LPAREN parametros pn_param_count RPAREN vars pn_func_var_count bloque pn_end_function
+               | MODULE tipo_retorno ID pn_add_function LPAREN parametros pn_param_count RPAREN bloque pn_end_function
+               | MODULE tipo_retorno ID pn_add_function LPAREN RPAREN vars pn_func_var_count bloque pn_end_function
+               | MODULE tipo_retorno ID pn_add_function LPAREN RPAREN bloque pn_end_function'''
     #print("termino funcion")
 
 
@@ -398,9 +398,12 @@ def p_llamada(p):
 
 def p_aux_llamada(p):
     '''aux_llamada : expresion pn_verify_argument
-                   | expresion pn_verify_argument COMMA aux_llamada'''
+                   | expresion pn_verify_argument COMMA aux_llamada
+                   | empty_arguments'''
     #print("termino aux_llamada")
 
+def p_empty_arguments(p):
+    'empty_arguments :'
 
 def p_no_condicional(p):
     '''no_condicional : FOR ID pn_push_operand_and_type ASSIGN pn_push_operator expresion pn_assign TO expresion pn_for_push_comparison pn_comparison pn_for_go_false DO bloque pn_for_go_back'''
@@ -1076,7 +1079,9 @@ def p_pn_add_function(p):
                 'float': 0,
                 'char': 0,
                 'bool': 0
-            }
+            },
+            'param_count' : 0,
+            'var_count' : 0
         }
         if (current_type != 'void'):
           next_address = global_b
@@ -1136,6 +1141,9 @@ def p_pn_arg_count(p):
     'pn_arg_count : '
     #print("pn_arg_count")
     global symbols, current_function_call, current_argument_count
+    #print(current_argument_count)
+    #print(symbols[current_function_call])
+    #print(symbols[current_function_call]['param_count'])
     if (symbols[current_function_call]['param_count'] == current_argument_count):
         current_argument_count = 0
     else:
@@ -1204,6 +1212,7 @@ def p_pn_verify_argument(p):
 
 def p_pn_func_gosub(p):
     'pn_func_gosub : '
+    #print("pn_func_gosub")
     global current_function_call, symbols, quadruples, current_function
     quad = ["gosub",None,None,current_function_call]
     quadruples.append(quad)
@@ -1236,7 +1245,7 @@ def p_pn_retorno(p):
             else:
                 # To Do
                 # Hacer mas especifico este error
-                print("La expresion no es de tipo bool en while")
+                print("Error: Couldn't finish processing 'return' at " + current_function + "function.")
                 sys.exit()
 
 # Auxiliary functions

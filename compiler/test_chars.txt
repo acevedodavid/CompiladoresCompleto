@@ -2,7 +2,7 @@ program testChars;
 
 var int : i, j; char : letra;
 
-int module imprime(char b)
+module char imprime(char b)
 {
   write(b);
   return('d');

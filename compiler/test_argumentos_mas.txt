@@ -2,7 +2,7 @@ program testArgumentosMas;
 
 var int : i,j;
 
-void module uno(int a, int b)
+module void uno(int a, int b)
 var int : k;
 {
   write(a);

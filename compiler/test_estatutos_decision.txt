@@ -2,7 +2,7 @@ program testAritmetica;
 
 var int : i, j; float : myFloat;
 
-void module miFuncion()
+module void miFuncion()
 {}
 
 main()

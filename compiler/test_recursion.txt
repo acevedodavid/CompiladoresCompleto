@@ -1,0 +1,17 @@
+program test;
+
+var int : i;
+
+module void printRec(int a)
+{
+  if (a > 0) then {
+    printRec(a - 1);
+    write(a);
+  }
+}
+
+main()
+{
+  i = 10;
+  printRec(i);
+}
