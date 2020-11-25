@@ -1,0 +1,9 @@
+program default;
+module int sum(int a, int b)
+{
+  return((a + b));
+}
+main()
+{
+  write(sum(10, 20));
+}

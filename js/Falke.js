@@ -69,14 +69,14 @@ Blockly.JavaScript['function'] = function (block) {
     //console.log(statements_parameters);
     var parsed_result = JSON.parse("{" + statements_parameters + "}");
 
-    var arguments = "";
+    var params = "";
     for (var key in parsed_result) {
         var var_type = parsed_result[key];
-        arguments += key + ", ";
+        params += var_type + " " + key + ", ";
     }
-    arguments = arguments.slice(0, -2);
+    params = params.slice(0, -2);
 
-    var code = "module " + dropdown_type + " " + text_name + "(" + arguments + ")" + "<br>" + statements_variables + "{<br>" + statements_content + "}<br>"
+    var code = "module " + dropdown_type + " " + text_name + "(" + params + ")" + "<br>" + statements_variables + "{<br>" + statements_content + "}<br>";
     return code;
 };
 
