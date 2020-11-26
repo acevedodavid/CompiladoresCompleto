@@ -12,3 +12,9 @@ h1 {
     height: 500px;
     width: 100%;
 }
+
+#codeDiv {
+    font-family: "Courier New", sans-serif;
+    color: black;
+    overflow-y: auto;
+}

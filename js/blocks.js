@@ -304,3 +304,16 @@ Blockly.Blocks['expression'] = {
  this.setHelpUrl("");
   }
 };
+
+Blockly.Blocks['write_many'] = {
+  init: function() {
+    this.appendStatementInput("expressions")
+        .setCheck(null)
+        .appendField("write");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(120);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};

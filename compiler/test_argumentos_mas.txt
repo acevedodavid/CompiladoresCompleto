@@ -1,0 +1,18 @@
+program testArgumentosMas;
+
+var int : i,j;
+
+module void uno(int a, int b)
+var int : k;
+{
+  write(a);
+  write(b);
+}
+
+main()
+var int : k;
+{
+  i = 2;
+  j = i * 2 - 1;
+  uno(i,j,k);
+}

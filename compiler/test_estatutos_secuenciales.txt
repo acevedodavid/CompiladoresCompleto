@@ -1,0 +1,9 @@
+program testSecuenciales;
+
+main()
+var int : fromRead;
+{
+  read(fromRead);
+  write(fromRead);
+  write(20 + 30);
+}

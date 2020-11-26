@@ -1,0 +1,12 @@
+program default;
+module void myFunc()
+{
+  write('a');
+}
+main()
+  var int : counter;
+ {
+  counter = 11;
+write(counter);
+myFunc();
+}

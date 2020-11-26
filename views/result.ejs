@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+          font-family: "Courier New",sans-serif;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function init() {
+            console.log("working");
+            var request = new XMLHttpRequest();
+            request.open("GET", '/retrieveResults', true);
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.onload = function() {
+                 var code = request.responseText;
+                 console.log(code);
+                 var htmlCode = code.replace(/\n/g, "<br>");
+                 console.log(htmlCode);
+                 document.getElementsByTagName('body')[0].innerHTML = htmlCode;
+            };
+            request.send();
+
+        }
+    </script>
+</head>
+
+<body onload="init()">
+</body>
+
+</html>

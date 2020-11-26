@@ -1,0 +1,31 @@
+program testFunciones;
+
+var int : i,j; float : myFloat; char : myChar;
+
+
+module void uno(int a)
+{
+  write(a);
+}
+
+module int suma(int a, int b)
+var int : result;
+{
+  result = a + b;
+  return(result);
+}
+
+module char dos(char b)
+{
+  write(b);
+  return('a');
+}
+
+main()
+{
+  i = 2;
+  j = 1;
+  uno(j);
+  write(dos('b'));
+  write(suma(i, j));
+}

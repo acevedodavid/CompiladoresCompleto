@@ -1,0 +1,10 @@
+program test;
+var int : i;
+
+main()
+{
+  for i = 1 to 6 do
+  {
+    write(i);
+  }
+}

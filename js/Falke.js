@@ -76,7 +76,7 @@ Blockly.JavaScript['function'] = function (block) {
     }
     params = params.slice(0, -2);
 
-    var code = dropdown_type + " module " + text_name + "(" + params + ")" + "<br>" + statements_variables + "{<br>" + statements_content + "}<br>"
+    var code = "module " + dropdown_type + " " + text_name + "(" + params + ")" + "<br>" + statements_variables + "{<br>" + statements_content + "}<br>";
     return code;
 };
 
@@ -103,13 +103,13 @@ Blockly.JavaScript['functioncall'] = function (block) {
     console.log(statements_parameters);
     var parsed_result = JSON.parse("{" + statements_parameters + "}");
 
-    var params = "";
+    var arguments = "";
     for (var key in parsed_result) {
         var var_type = parsed_result[key];
-        params += key + ", ";
+        arguments += key + ", ";
     }
-    params = params.slice(0, -2);
-    var code = text_name + "(" + params + ")";
+    arguments = arguments.slice(0, -2);
+    var code = text_name + "(" + arguments + ")";
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -121,13 +121,13 @@ Blockly.JavaScript['functioncall_void'] = function (block) {
     //console.log(statements_parameters);
     var parsed_result = JSON.parse("{" + statements_parameters + "}");
 
-    var params = "";
+    var arguments = "";
     for (var key in parsed_result) {
         var var_type = parsed_result[key];
-        params += key + ", ";
+        arguments += key + ", ";
     }
-    params = params.slice(0, -2);
-    var code = text_name + "(" + params + ");<br>";
+    arguments = arguments.slice(0, -2);
+    var code = text_name + "(" + arguments + ");<br>";
     return code;
 };
 
@@ -215,14 +215,31 @@ Blockly.JavaScript['logical_operators'] = function (block) {
     var value_left_operand = Blockly.JavaScript.valueToCode(block, 'left_operand', Blockly.JavaScript.ORDER_NONE);
     var dropdown_operator = block.getFieldValue('OPERATOR');
     var value_right_operand = Blockly.JavaScript.valueToCode(block, 'right_operand', Blockly.JavaScript.ORDER_NONE);
-    
+
     var code = value_left_operand + " " + dropdown_operator + " " + value_right_operand;
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['expression'] = function(block) {
   var value_result = Blockly.JavaScript.valueToCode(block, 'result', Blockly.JavaScript.ORDER_NONE);
-  // TODO: Assemble JavaScript into code variable.
+
   var code = "\"" + value_result + "\" : \"dummy\"," ;
+  return code;
+};
+
+Blockly.JavaScript['write_many'] = function(block) {
+  var statements_expressions = Blockly.JavaScript.statementToCode(block, 'expressions');
+
+  statements_expressions = statements_expressions.slice(0,-1);
+  var parsed_result = JSON.parse("{" + statements_expressions + "}");
+
+  var arguments = "";
+  for (var key in parsed_result) {
+      var var_type = parsed_result[key];
+      arguments += key + ", ";
+  }
+  arguments = arguments.slice(0, -2);
+
+  var code = 'write(' + arguments + ');<br>';
   return code;
 };
