@@ -1,9 +1,12 @@
 program default;
-module int sum(int a, int b)
+module void myFunc()
 {
-  return((a + b));
+  write('a');
 }
 main()
-{
-  write(sum(10, 20));
+  var int : counter;
+ {
+  counter = 11;
+write(counter);
+myFunc();
 }

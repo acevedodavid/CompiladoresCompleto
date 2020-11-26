@@ -4,7 +4,6 @@ var int : i,j; float : myFloat; char : myChar;
 
 
 module void uno(int a)
-var int : k;
 {
   write(a);
 }

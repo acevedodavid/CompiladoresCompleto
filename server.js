@@ -71,6 +71,14 @@ app.get('/tables.html', (req, res) => {
     res.render('tables');
 });
 
+app.get('/documento', (req, res) => {
+    res.render('documento');
+});
+
+app.get('/manual', (req, res) => {
+    res.render('manual');
+});
+
 app.get('/retrieveResults', (req,res) => {
     console.log("/retrieveResults");
     var result = "";
